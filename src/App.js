@@ -24,7 +24,8 @@ const bg = {
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
   width: '100vw',
-  height: '100vh'
+  height: '100vh',
+  justifyContent: 'center',
 }
 
 export default App;
