@@ -9,9 +9,9 @@ function App() {
     <div style={bg}>
       <Container fluid='md'>
         <Row>
-          <Col></Col>
-          <Col><Login/></Col>
-          <Col></Col>
+          <Col lg={4} sm={2}></Col>
+          <Col lg={4} sm={8}><Login/></Col>
+          <Col lg={4} sm={2}></Col>
         </Row>
       </Container>
     </div>
