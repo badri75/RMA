@@ -9,9 +9,9 @@ function App() {
     <div style={bg}>
       <Container fluid='md'>
         <Row>
-          <Col></Col>
-          <Col><Login/></Col>
-          <Col></Col>
+          <Col md={4} sm={2} xs={1}></Col>
+          <Col md={4} sm={8} xs={10}><Login/></Col>
+          <Col md={4} sm={2} xs={1}></Col>
         </Row>
       </Container>
     </div>
@@ -24,7 +24,8 @@ const bg = {
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
   width: '100vw',
-  height: '100vh'
+  height: '100vh',
+  justifyContent: 'center',
 }
 
 export default App;

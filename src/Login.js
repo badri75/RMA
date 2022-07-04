@@ -22,7 +22,9 @@ class Login extends Component {
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <Form.Check type="checkbox" label="Check me out" />
                     </Form.Group>
-                    <Button variant="primary" type="submit" style={{display: 'flex', justifyContent: 'center'}}>Submit</Button>
+                    <div style={{display: 'flex', justifyContent: 'center'}}>
+                        <Button variant="primary" type="submit">Submit</Button>
+                    </div>
                 </Form>
             </div>
         );
