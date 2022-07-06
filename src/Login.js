@@ -1,5 +1,6 @@
-import React, {Component, useState} from "react";
+import React, {Component, useState, useEffect} from "react";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
 import {Button, Form} from 'react-bootstrap';
 
 function Login(){
@@ -8,6 +9,29 @@ function Login(){
         password: '',
         submitDisabled: true,
     });
+
+    useEffect(() => {
+        const componentDidMount = () => {
+            loadCaptchaEnginge(6); 
+        };
+    }, []);
+
+    const doSubmit = () => {
+        let user_captcha = document.getElementById('captcha').value;
+ 
+        if (validateCaptcha(user_captcha)===true) {
+            alert('Captcha Matched');
+            //loadCaptchaEnginge(6); 
+            document.getElementById('captcha').value = "";
+        }
+ 
+        else {
+            alert('Captcha Does Not Match');
+            document.getElementById('captcha').value = "";
+        }
+    };
+ 
+
     let handleChangeEmail = (event) => {
         setState({
             ...state,
@@ -44,20 +68,20 @@ function Login(){
                     <Form.Label>Email address</Form.Label>
                     <Form.Control type="email" placeholder="Enter email" name="email" 
                     required={true} onChange={handleChangeEmail}/>
-                    <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
-                    </Form.Text>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" name="password" 
                     required={true} onChange={handleChangePassword}/>
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Terms & Conditions" required={true} />
+                <Form.Group className="mb-3" controlId="formBasicCaptcha">
+                    <Form.Label>Captcha</Form.Label>
+                    <LoadCanvasTemplate />
+                    <Form.Control type="text" placeholder="Enter Captcha" name="captcha" 
+                    required={true} id="captcha"/>
                 </Form.Group>
                 <div style={{display: 'flex', justifyContent: 'center'}}>
-                    <Button variant="primary" type="submit"  disabled={state.submitDisabled}>Submit</Button>
+                    <Button variant="primary" type="submit" onClick={doSubmit}>Submit</Button>
                 </div>
             </Form>
         </div>
