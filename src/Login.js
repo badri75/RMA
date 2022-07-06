@@ -8,10 +8,10 @@ function Login(){
         username: '',
         password: '',
         submitDisabled: true,
-    });
+    },loadCaptchaEnginge(6));
 
     useEffect(() => {
-        const componentDidMount = () => {
+            const componentDidMount = () => {
             loadCaptchaEnginge(6); 
         };
     }, []);
