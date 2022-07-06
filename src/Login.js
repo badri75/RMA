@@ -8,7 +8,7 @@ function Login(){
         username: '',
         password: '',
         submitDisabled: true,
-    },loadCaptchaEnginge(6));
+    });
 
     useEffect(() => {
             const componentDidMount = () => {
@@ -21,7 +21,7 @@ function Login(){
  
         if (validateCaptcha(user_captcha)===true) {
             alert('Captcha Matched');
-            //loadCaptchaEnginge(6); 
+            loadCaptchaEnginge(6); 
             document.getElementById('captcha').value = "";
         }
  
