@@ -1,6 +1,12 @@
 import React, {useState, useEffect} from "react";
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
+import {
+    BrowserRouter,
+  Routes,
+  Route,
+  } from "react-router-dom";
 import {Button, Form} from 'react-bootstrap';
+import UserForm from '../form';
 //import { useNavigate } from "react-router";
 
 function Login(){
@@ -35,6 +41,7 @@ function Login(){
         e.preventDefault();
         if (mail && form.pwd.length>=8 && checkCaptcha()===true){
             alert("Login Success");
+            <Route exact path="/" component={UserForm} />  
             // e.preventDefault();
             // // When a post request is sent to the create url, we'll add a new record to the database.
             // const newPerson = { ...form };
@@ -100,7 +107,7 @@ function Login(){
 }
 
 const boxStyle = {
-    marginTop: '25%',
+    marginTop: '35%',
 }
 
 const formStyle = {
