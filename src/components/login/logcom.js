@@ -36,25 +36,20 @@ function Logcom(){
         let mail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(form.email);
         e.preventDefault();
         if (mail && form.pwd.length>=8 && checkCaptcha()===true){
-            alert("Login Success");
-            navigate('/form');
-            //<Route exact path="/" component={UserForm} />  
-            // e.preventDefault();
-            // // When a post request is sent to the create url, we'll add a new record to the database.
-            // const newPerson = { ...form };
-            // await fetch("http://localhost:3000/record/add", {
-            //     method: "POST",
-            //     headers: {
-            //         "Content-Type": "application/json",
-            //     },
-            //     body: JSON.stringify(newPerson),
-            // })
-            // .catch(error => {
-            //     window.alert(error);
-            //     return;
-            // });
-            // setForm({ name: "", position: "", level: "" });
-            // navigate("/");
+            if(form.email === "badri@gmail.com" && form.pwd === "badri12345"){
+                navigate("/home");
+                alert("Login Success");
+                window.location.href = 'http://localhost:3001/'
+                //https://github.com/jeffersonRibeiro/react-shopping-cart
+                //react-shopping-cart\src\static\json\products.json
+                //react-shopping-cart\src\components\Cart\Cart.tsx
+
+                //https://github.com/nikhildsahu/react-payment-form
+                //react-payment-form\src\Components\Form.jsx
+            }
+            else{
+                alert("Invalid Credentials");
+            }
         }
         else{
             if (!mail)
