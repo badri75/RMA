@@ -4,7 +4,7 @@ import LogCom from './logcom';
 import {Container, Row, Col} from 'react-bootstrap';
 import background from "../images/sanber.jpg";
 
-function Login() {
+function App() {
   return (
     <div style={bg}>
       <Container fluid='md'>
@@ -28,4 +28,4 @@ const bg = {
     justifyContent: 'center',
   }
 
-export default Login
+export default App;

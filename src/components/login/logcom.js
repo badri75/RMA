@@ -37,9 +37,18 @@ function Logcom(){
         e.preventDefault();
         if (mail && form.pwd.length>=8 && checkCaptcha()===true){
             if(form.email === "badri@gmail.com" && form.pwd === "badri12345"){
-                navigate("/home");
+                // navigate("/home");
                 alert("Login Success");
-                window.location.href = 'http://localhost:3001/'
+                navigate("/home",{
+                    state: {
+                        email: form.email,
+                        pwd: form.pwd,
+                    }
+                });
+
+                //https://javascript.plainenglish.io/how-to-pass-data-between-pages-in-react-router-dom-v6-e2f95afb7cdf
+
+                // window.location.href = 'http://localhost:3001/'
                 //https://github.com/jeffersonRibeiro/react-shopping-cart
                 //react-shopping-cart\src\static\json\products.json
                 //react-shopping-cart\src\components\Cart\Cart.tsx
