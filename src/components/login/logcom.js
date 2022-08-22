@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import {BrowserRouter, Routes, Route,} from "react-router-dom";
 import {Button, Form} from 'react-bootstrap';
@@ -14,6 +14,10 @@ function Logcom(){
         email: "",
         pwd: "",
     });
+    const mailValid = useRef(null)
+    const pwdValid = useRef(null)
+    const capValid = useRef(null)
+
     let navigate = useNavigate();
 
     function updateForm(value) {
@@ -62,17 +66,17 @@ function Logcom(){
         }
         else{
             if (!mail)
-                document.getElementById('mail-valid').innerHTML = "<Form.Label class='text-danger'>Enter valid mail id<Form.Label>"
+                mailValid.current = "<Form.Label class='text-danger'>Enter valid mail id<Form.Label>"
             else
-                document.getElementById('mail-valid').innerHTML = ""
+                mailValid.current = ""
             if (form.pwd.length<8)
-                document.getElementById('pwd-valid').innerHTML = "<Form.Label class='text-danger'>Must be atleast be 8 Characters long<Form.Label>"
+                pwdValid.current = "<Form.Label class='text-danger'>Must be atleast be 8 Characters long<Form.Label>"
             else
-                document.getElementById('pwd-valid').innerHTML = ""
+                pwdValid.current = ""
             if (checkCaptcha()===false)
-                document.getElementById('captcha-valid').innerHTML = "<Form.Label class='text-danger'>Invalid Captcha<Form.Label>"
+                capValid.current = "<Form.Label class='text-danger'>Invalid Captcha<Form.Label>"
             else
-                document.getElementById('captcha-valid').innerHTML = ""
+                capValid.current = ""
         }
     }
 
@@ -84,20 +88,20 @@ function Logcom(){
                     <Form.Label>Email address</Form.Label>
                     <Form.Control type="email" placeholder="Enter email" name="email" 
                     required={true} id="mail" onChange={(e) => updateForm({ email: e.target.value })}/>
-                    <span id='mail-valid'></span>
+                    <span ref={mailValid}></span>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" name="password" 
                     required={true} id="pwd" onChange={(e) => updateForm({ pwd: e.target.value })}/>
-                    <span id='pwd-valid'></span>
+                    <span ref={pwdValid}></span>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicCaptcha">
                     <Form.Label>Captcha</Form.Label>
                     <LoadCanvasTemplate />
                     <Form.Control type="text" placeholder="Enter Captcha" name="captcha" 
                     required={true} id="captcha"/>
-                    <span id='captcha-valid'></span>
+                    <span ref={capValid}></span>
                 </Form.Group>
                 <div style={{display: 'flex', justifyContent: 'center'}}>
                     <Button variant="primary" type="submit">Submit</Button>
